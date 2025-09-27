@@ -112,7 +112,7 @@
             /* Make it slightly more visible */
         }
 
-        /* Custom Scroll Class for Gallery - Marquee Setup */
+        /* Custom Scroll Class for Gallery - JavaScript-based scrolling */
         .horizontal-scroll {
             overflow-x: hidden;
             /* Hide the scrollbar and prevent manual scrolling */
@@ -124,6 +124,7 @@
             /* IE and Edge */
             scrollbar-width: none;
             /* Firefox */
+            position: relative;
         }
 
         .horizontal-scroll::-webkit-scrollbar {
@@ -131,24 +132,11 @@
             /* Chrome, Safari, Opera */
         }
 
-        /* Keyframes for continuous scroll from right to left */
-        @keyframes scroll-left {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                /* Translate by half the width (since content is duplicated) */
-                transform: translateX(-50%);
-            }
-        }
-
         /* Marquee Content Wrapper */
         .marquee-content {
             display: flex;
-            /* Apply the animation */
-            animation: scroll-left 40s linear infinite;
-            /* Adjust duration (40s) for desired speed */
+            position: relative;
+            will-change: transform;
         }
 
         /* Ensure images are static width for scroll calculation */
@@ -227,14 +215,11 @@
                 display: none;
             }
 
-            .marquee-content {
-                animation-duration: 60s;
-                /* Slower on mobile for better visibility */
-            }
-
             .marquee-content>* {
                 min-width: 150px;
                 /* Fixed width for mobile */
+                margin-right: 1rem;
+                /* Add spacing between items */
             }
 
             /* Fix for horizontal scroll issue */
@@ -246,6 +231,12 @@
             /* Ensure all sections don't overflow */
             section {
                 overflow-x: hidden;
+            }
+
+            /* Adjust hero text for mobile */
+            #hero h1 {
+                font-size: 2.5rem;
+                line-height: 1.2;
             }
         }
     </style>
@@ -324,9 +315,7 @@
             <!-- Banner Placeholder (Now using the strong border card style) -->
             <div class="max-w-4xl mx-auto mb-12 rounded-xl overflow-hidden neon-border-card shadow-2xl">
                 <!-- Using one of the uploaded images as the banner placeholder -->
-                <img src="Gemini_Generated_Image_vgnizdvgnizdvgni.png" alt="UPTOBER Cyber Bull Banner"
-                    class="w-full h-auto"
-                    onerror="this.onerror=null;this.src='https://placehold.co/800x200/000510/00A6FF?text=NEON+CYBER+BULL+BANNER+HERE';">
+                <img src="banner.png" alt="UPTOBER Cyber Bull Banner" class="w-full h-auto">
             </div>
 
             <!-- Token Info & Copy (Clean, Dark Card with intense neon) -->
@@ -355,9 +344,7 @@
                 <div class="lg:w-1/2 flex justify-center mb-10 lg:mb-0">
                     <!-- Placeholder for UPTOBER Bull Logo - Framed like a collectible card -->
                     <div class="p-6 neon-border-card">
-                        <img src="Gemini_Generated_Image_tpm1u6tpm1u6tpm1.png" alt="UPTOBER Anime Bull Logo"
-                            class="w-64 md:w-80 rounded-lg"
-                            onerror="this.onerror=null;this.src='https://placehold.co/320x320/000510/00A6FF?text=ANIME+BULL+LOGO';">
+                        <img src="logo.png" alt="UPTOBER Anime Bull Logo" class="w-64 md:w-80 rounded-lg">
                     </div>
                 </div>
 
@@ -482,120 +469,62 @@
                 The official, high-resolution visual assets. See the continuous display below.
             </p>
 
-            <!-- Horizontal Scroll Container - Now a Marquee -->
+            <!-- Horizontal Scroll Container - JavaScript-based scrolling -->
             <div class="horizontal-scroll max-w-10xl mx-auto">
-                <div class="marquee-content space-x-4">
-                    <!-- Set 1 (Original Content) - REDUCED min-w for tighter fit on all screen sizes -->
+                <div class="marquee-content space-x-4" id="marquee-container">
+                    <!-- Images will be duplicated by JavaScript for seamless looping -->
                     <div
-                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
-                        <img src="1.png" alt="Extra Art 2" class="w-full h-auto object-cover aspect-square rounded-md">
+                        class="min-w-[150px] sm:min-w-[200px] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
+                        <img src="1.png" alt="Art 1" class="w-full h-auto object-cover aspect-square rounded-md">
                     </div>
 
                     <div
-                        class="min-w-[2rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
-                        <img src="2.png" alt="Extra Art 1" class="w-full h-auto object-cover aspect-square rounded-md">
+                        class="min-w-[150px] sm:min-w-[200px] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
+                        <img src="2.png" alt="Art 2" class="w-full h-auto object-cover aspect-square rounded-md">
                     </div>
                     <div
-                        class="min-w-[2rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
-                        <img src="3.png" alt="Extra Art 1" class="w-full h-auto object-cover aspect-square rounded-md">
+                        class="min-w-[150px] sm:min-w-[200px] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
+                        <img src="3.png" alt="Art 3" class="w-full h-auto object-cover aspect-square rounded-md">
                     </div>
                     <div
-                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
-                        <img src="4.png" alt="Extra Art 2" class="w-full h-auto object-cover aspect-square rounded-md">
+                        class="min-w-[150px] sm:min-w-[200px] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
+                        <img src="4.png" alt="Art 4" class="w-full h-auto object-cover aspect-square rounded-md">
                     </div>
 
                     <div
-                        class="min-w-[2rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
-                        <img src="5.png" alt="Extra Art 1" class="w-full h-auto object-cover aspect-square rounded-md">
+                        class="min-w-[150px] sm:min-w-[200px] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
+                        <img src="5.png" alt="Art 5" class="w-full h-auto object-cover aspect-square rounded-md">
                     </div>
                     <div
-                        class="min-w-[2rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
-                        <img src="6.png" alt="Extra Art 1" class="w-full h-auto object-cover aspect-square rounded-md">
+                        class="min-w-[150px] sm:min-w-[200px] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
+                        <img src="6.png" alt="Art 6" class="w-full h-auto object-cover aspect-square rounded-md">
                     </div>
                     <div
-                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
+                        class="min-w-[150px] sm:min-w-[200px] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
                         <img src="Gemini_Generated_Image_icvypicvypicvypi.png" alt="Staking Our Claim"
                             class="w-full h-auto object-cover aspect-square rounded-md">
                     </div>
 
                     <div
-                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
+                        class="min-w-[150px] sm:min-w-[200px] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
                         <img src="Gemini_Generated_Image_ebjw4lebjw4lebjw.png" alt="POV: It's October"
                             class="w-full h-auto object-cover aspect-square rounded-md">
                     </div>
 
                     <div
-                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
+                        class="min-w-[150px] sm:min-w-[200px] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
                         <img src="Gemini_Generated_Image_6h7juo6h7juo6h7j.png" alt="October is Our Season"
                             class="w-full h-auto object-cover aspect-square rounded-md">
                     </div>
 
                     <div
-                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
+                        class="min-w-[150px] sm:min-w-[200px] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
                         <img src="Gemini_Generated_Image_wy4jcqwy4jcqwy4j.png" alt="Charging Bull"
                             class="w-full h-auto object-cover aspect-square rounded-md">
                     </div>
 
                     <div
-                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
-                        <img src="Gemini_Generated_Image_5n5wdf5n5wdf5n5w.png" alt="Diamond Hooves"
-                            class="w-full h-auto object-cover aspect-square rounded-md">
-                    </div>
-
-                    <!-- Set 2 (Duplicated Content for infinite loop) - REDUCED min-w for tighter fit on all screen sizes -->
-                    <div
-                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
-                        <img src="1.png" alt="Extra Art 2" class="w-full h-auto object-cover aspect-square rounded-md">
-                    </div>
-
-                    <div
-                        class="min-w-[2rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
-                        <img src="2.png" alt="Extra Art 1" class="w-full h-auto object-cover aspect-square rounded-md">
-                    </div>
-                    <div
-                        class="min-w-[2rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
-                        <img src="3.png" alt="Extra Art 1" class="w-full h-auto object-cover aspect-square rounded-md">
-                    </div>
-                    <div
-                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
-                        <img src="4.png" alt="Extra Art 2" class="w-full h-auto object-cover aspect-square rounded-md">
-                    </div>
-
-                    <div
-                        class="min-w-[2rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
-                        <img src="5.png" alt="Extra Art 1" class="w-full h-auto object-cover aspect-square rounded-md">
-                    </div>
-                    <div
-                        class="min-w-[2rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
-                        <img src="6.png" alt="Extra Art 1" class="w-full h-auto object-cover aspect-square rounded-md">
-                    </div>
-
-                    <div
-                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
-                        <img src="Gemini_Generated_Image_icvypicvypicvypi.png" alt="Staking Our Claim"
-                            class="w-full h-auto object-cover aspect-square rounded-md">
-                    </div>
-
-                    <div
-                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
-                        <img src="Gemini_Generated_Image_ebjw4lebjw4lebjw.png" alt="POV: It's October"
-                            class="w-full h-auto object-cover aspect-square rounded-md">
-                    </div>
-
-                    <div
-                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
-                        <img src="Gemini_Generated_Image_6h7juo6h7juo6h7j.png" alt="October is Our Season"
-                            class="w-full h-auto object-cover aspect-square rounded-md">
-                    </div>
-
-                    <div
-                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
-                        <img src="Gemini_Generated_Image_wy4jcqwy4jcqwy4j.png" alt="Charging Bull"
-                            class="w-full h-auto object-cover aspect-square rounded-md">
-                    </div>
-
-                    <div
-                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
+                        class="min-w-[150px] sm:min-w-[200px] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-10 p-2">
                         <img src="Gemini_Generated_Image_5n5wdf5n5wdf5n5w.png" alt="Diamond Hooves"
                             class="w-full h-auto object-cover aspect-square rounded-md">
                     </div>
@@ -851,6 +780,88 @@
                 mobileMenu.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
+        });
+
+        // JavaScript-based continuous scrolling carousel
+        document.addEventListener('DOMContentLoaded', function () {
+            const marqueeContainer = document.getElementById('marquee-container');
+            const items = marqueeContainer.children;
+            const itemCount = items.length;
+
+            // Duplicate the items for seamless looping
+            for (let i = 0; i < itemCount; i++) {
+                const clone = items[i].cloneNode(true);
+                marqueeContainer.appendChild(clone);
+            }
+
+            // Calculate total width
+            const firstItem = items[0];
+            const itemWidth = firstItem.offsetWidth + parseInt(window.getComputedStyle(firstItem).marginRight);
+            const totalWidth = itemWidth * itemCount * 2; // Double for the clones
+
+            // Set container width to accommodate all items
+            marqueeContainer.style.width = totalWidth + 'px';
+
+            // Animation variables
+            let position = 0;
+            const speed = 1; // Adjust speed as needed (pixels per frame)
+            let animationId;
+
+            // Start the animation
+            function animateMarquee() {
+                position -= speed;
+
+                // Reset position when we've scrolled through one set of items
+                if (Math.abs(position) >= itemWidth * itemCount) {
+                    position = 0;
+                }
+
+                marqueeContainer.style.transform = `translateX(${position}px)`;
+                animationId = requestAnimationFrame(animateMarquee);
+            }
+
+            // Start animation
+            animateMarquee();
+
+            // Pause on hover
+            marqueeContainer.addEventListener('mouseenter', function () {
+                cancelAnimationFrame(animationId);
+            });
+
+            marqueeContainer.addEventListener('mouseleave', function () {
+                animationId = requestAnimationFrame(animateMarquee);
+            });
+
+            // Handle mobile touch events
+            let touchStartX = 0;
+            let isTouching = false;
+
+            marqueeContainer.addEventListener('touchstart', function (e) {
+                touchStartX = e.touches[0].clientX;
+                isTouching = true;
+                cancelAnimationFrame(animationId);
+            });
+
+            marqueeContainer.addEventListener('touchmove', function (e) {
+                if (!isTouching) return;
+
+                const touchX = e.touches[0].clientX;
+                const deltaX = touchX - touchStartX;
+
+                // Allow some manual scrolling
+                position += deltaX * 0.5;
+                touchStartX = touchX;
+
+                marqueeContainer.style.transform = `translateX(${position}px)`;
+            });
+
+            marqueeContainer.addEventListener('touchend', function () {
+                isTouching = false;
+                // Resume animation after a brief pause
+                setTimeout(() => {
+                    animationId = requestAnimationFrame(animateMarquee);
+                }, 1000);
+            });
         });
     </script>
 </body>
