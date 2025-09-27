@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPTOBER - The Cyber Bull of Base Chain</title>
+    <!-- Tailwind CSS CDN for utility-first styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Electrolize (for titles/headings) and Inter (for body text) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Electrolize&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* Define custom colors based on the artwork */
+        :root {
+            --deep-space: #000510;
+            /* Near Black for Ultimate Contrast */
+            --neon-blue: #00A6FF;
+            /* Bright Neon Glow */
+            --base-blue: #0052FF;
+            /* Standard Base Blue */
+            --accent-gold: #FFD700;
+            /* Gold Horn Accent */
+        }
+
+        /* Set custom font usage */
+        .font-primary {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .font-cyber {
+            font-family: 'Electrolize', sans-serif;
+        }
+
+        /* Dark Background and Neon Glow Styling */
+        body {
+            background-color: var(--deep-space);
+            color: white;
+            /* Add a subtle dark radial glow for depth */
+            background-image: radial-gradient(circle at 50% 10%, rgba(0, 82, 255, 0.1), transparent 70%);
+        }
+
+        /* Custom Neon Heading Style - High Intensity */
+        .neon-heading {
+            color: white;
+            text-shadow:
+                0 0 7px rgba(255, 255, 255, 0.7),
+                /* White core glow */
+                0 0 20px var(--neon-blue),
+                0 0 30px var(--neon-blue);
+        }
+
+        /* Neon Border Card Style (Applied to many elements now) */
+        .neon-border-card {
+            background-color: rgba(5, 11, 27, 0.7);
+            /* Slightly translucent dark bg */
+            border: 2px solid var(--neon-blue);
+            box-shadow:
+                0 0 15px var(--neon-blue),
+                inset 0 0 5px rgba(255, 255, 255, 0.2);
+            /* Inner white highlight */
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .neon-border-card:hover {
+            box-shadow: 0 0 25px var(--neon-blue), inset 0 0 8px rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Neon Button Styling */
+        .neon-cta {
+            background-color: transparent;
+            color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
+            font-family: 'Electrolize', sans-serif;
+        }
+
+        .neon-cta:hover {
+            background-color: var(--neon-blue);
+            color: var(--deep-space);
+            box-shadow: 0 0 25px var(--neon-blue);
+            transform: scale(1.05);
+        }
+
+        /* Subtle Background Hex Pattern (Mimicking the artwork) */
+        .cyber-grid {
+            position: relative;
+            z-index: 10;
+        }
+
+        .cyber-grid::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            /* Enhanced Hex/Network Pattern */
+            background-image:
+                repeating-linear-gradient(45deg, var(--neon-blue) 0, var(--neon-blue) 1px, transparent 1px, transparent 20px),
+                repeating-linear-gradient(-45deg, var(--neon-blue) 0, var(--neon-blue) 1px, transparent 1px, transparent 20px);
+            background-size: 30px 30px;
+            opacity: 0.08;
+            /* Make it slightly more visible */
+        }
+
+        /* Custom Scroll Class for Gallery - Marquee Setup */
+        .horizontal-scroll {
+            overflow-x: hidden;
+            /* Hide the scrollbar and prevent manual scrolling */
+            padding-bottom: 1rem;
+            /* Space below the scroll for aesthetics */
+            white-space: nowrap;
+            /* Keep all content on a single line */
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        .horizontal-scroll::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari, Opera */
+        }
+
+        /* Keyframes for continuous scroll from right to left */
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                /* Translate by half the width (since content is duplicated) */
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Marquee Content Wrapper */
+        .marquee-content {
+            display: flex;
+            /* Apply the animation */
+            animation: scroll-left 40s linear infinite;
+            /* Adjust duration (40s) for desired speed */
+        }
+
+        /* Ensure images are static width for scroll calculation */
+        .marquee-content>* {
+            flex-shrink: 0;
+            /* Important: prevents items from shrinking */
+        }
+    </style>
+</head>
+
+<body class="font-primary">
+
+    <!-- Navbar: Sticky, Dark, Neon Accents -->
+    <nav
+        class="sticky top-0 z-50 bg-[var(--deep-space)] p-4 shadow-lg shadow-[rgba(0,166,255,0.3)] border-b border-[var(--neon-blue)]/50">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <!-- Logo/Domain -->
+            <a href="#" class="flex items-center space-x-2 text-white font-cyber text-xl sm:text-2xl">
+                <i class="fas fa-bull text-[var(--neon-blue)] text-3xl neon-heading"></i>
+                <span class="neon-heading">UPTOBER</span>
+                <span class="text-xs font-light text-gray-500 ml-2"></span>
+            </a>
+            <!-- Nav Links -->
+            <div class="hidden md:flex space-x-6">
+                <a href="#about"
+                    class="text-white hover:text-[var(--neon-blue)] transition duration-300 font-cyber font-semibold">ABOUT</a>
+                <a href="#howtobuy"
+                    class="text-white hover:text-[var(--neon-blue)] transition duration-300 font-cyber font-semibold">HOW
+                    TO BUY</a>
+                <a href="#tokenomics"
+                    class="text-white hover:text-[var(--neon-blue)] transition duration-300 font-cyber font-semibold">TOKENOMICS</a>
+                <a href="#art"
+                    class="text-white hover:text-[var(--neon-blue)] transition duration-300 font-cyber font-semibold">ART</a>
+                <a href="#socials"
+                    class="text-white hover:text-[var(--neon-blue)] transition duration-300 font-cyber font-semibold">SOCIALS</a>
+                <a href="#roadmap"
+                    class="text-white hover:text-[var(--neon-blue)] transition duration-300 font-cyber font-semibold">ROADMAP</a>
+            </div>
+            <!-- CTA Button -->
+            <a href="#"
+                class="neon-cta font-extrabold py-2 px-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+                TRADE NOW
+            </a>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION: Dark, Cyber Grid Background, Focused on the Character -->
+    <section id="hero"
+        class="pt-16 pb-20 md:pt-24 md:pb-32 text-center border-b border-[var(--neon-blue)]/20 cyber-grid">
+        <div class="container mx-auto px-4 relative z-20">
+
+            <!-- Main Headline -->
+            <h1 class="text-5xl sm:text-7xl md:text-8xl font-cyber neon-heading leading-tight mb-4 uppercase">
+                THE CYBER <span class="text-[var(--accent-gold)]">BULL</span> HAS ARRIVED
+            </h1>
+
+            <p class="text-xl sm:text-2xl text-gray-300 font-medium mb-12 max-w-3xl mx-auto">
+                **UPTOBER** is the Anime Bull of the **Base Chain**, engineered for the biggest season in crypto.
+            </p>
+
+            <!-- Banner Placeholder (Now using the strong border card style) -->
+            <div class="max-w-4xl mx-auto mb-12 rounded-xl overflow-hidden neon-border-card shadow-2xl">
+                <!-- Using one of the uploaded images as the banner placeholder -->
+                <img src="Gemini_Generated_Image_vgnizdvgnizdvgni.png" alt="UPTOBER Cyber Bull Banner"
+                    class="w-full h-auto"
+                    onerror="this.onerror=null;this.src='https://placehold.co/800x200/000510/00A6FF?text=NEON+CYBER+BULL+BANNER+HERE';">
+            </div>
+
+            <!-- Token Info & Copy (Clean, Dark Card with intense neon) -->
+            <div
+                class="max-w-2xl mx-auto p-5 rounded-xl flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0 sm:space-x-4 neon-border-card">
+                <span class="text-lg font-bold text-[var(--neon-blue)] font-cyber">CONTRACT:</span>
+                <code id="contract-address"
+                    class="text-sm sm:text-base font-mono bg-gray-800 p-2 rounded-lg text-white break-all select-all shadow-inner border border-gray-700">0x[PASTE_BASE_CHAIN_ADDRESS_HERE]</code>
+                <button onclick="copyContract(this)"
+                    class="copy-btn bg-[var(--neon-blue)] text-black font-extrabold py-2 px-4 rounded-lg shadow-md hover:shadow-[0_0_20px_var(--neon-blue)] transition duration-200">
+                    <i class="fas fa-copy mr-1"></i> COPY
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 2. ABOUT SECTION: Dark, High Contrast -->
+    <section id="about" class="py-20 bg-[var(--deep-space)] border-b border-[var(--neon-blue)]/20 cyber-grid">
+        <div class="container mx-auto px-4 relative z-20">
+            <h2 class="text-center text-4xl font-cyber neon-heading mb-16 inline-block px-4 pb-2 mx-auto uppercase">
+                THE OCTOBULL INITIATIVE
+            </h2>
+            <div class="flex flex-col lg:flex-row items-center lg:space-x-12">
+
+                <div class="lg:w-1/2 flex justify-center mb-10 lg:mb-0">
+                    <!-- Placeholder for UPTOBER Bull Logo - Framed like a collectible card -->
+                    <div class="p-6 neon-border-card">
+                        <img src="Gemini_Generated_Image_tpm1u6tpm1u6tpm1.png" alt="UPTOBER Anime Bull Logo"
+                            class="w-64 md:w-80 rounded-lg"
+                            onerror="this.onerror=null;this.src='https://placehold.co/320x320/000510/00A6FF?text=ANIME+BULL+LOGO';">
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2">
+                    <p class="text-lg mb-6 leading-relaxed text-gray-300">
+                        **UPTOBER** is more than a meme; it's a decentralized movement engineered for the Base chain.
+                        Our mascot embodies the inevitable bullish surge typically associated with the fourth quarter.
+                        We combine high-quality **Anime/Cyberpunk** aesthetics with rugged, zero-tax tokenomics.
+                    </p>
+                    <div
+                        class="p-6 rounded-xl border-l-4 border-[var(--neon-blue)] bg-[var(--deep-space)]/50 shadow-inner">
+                        <h3 class="text-2xl font-cyber text-[var(--neon-blue)] mb-3 neon-heading">Mission Protocol:</h3>
+                        <p class="text-xl font-semibold leading-relaxed text-gray-200">
+                            To establish the premier high-contrast, artistic meme on Base, providing transparent,
+                            community-focused development and riding the wave of perpetual upward movement.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. TOKENOMICS: Simple, Bold, and Transparent -->
+    <section id="tokenomics" class="py-20 bg-[var(--deep-space)]/50 text-white border-b border-[var(--neon-blue)]/50">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-5xl font-cyber neon-heading text-white mb-12 uppercase">
+                TOKENOMICS: ZERO RESISTANCE
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-1xl mx-auto">
+                <!-- Metric 1: Supply -->
+                <div class="p-6 rounded-xl neon-border-card">
+                    <h3 class="text-xl font-bold mb-2 text-gray-400 font-cyber">Total Supply</h3>
+                    <p class="text-5xl font-black text-[var(--neon-blue)] neon-heading">1,000,000,000</p>
+                </div>
+                <!-- Metric 2: Tax -->
+                <div class="p-6 rounded-xl neon-border-card">
+                    <h3 class="text-xl font-bold mb-2 text-gray-400 font-cyber">Buy / Sell Tax</h3>
+                    <p class="text-5xl font-black text-[var(--neon-blue)] neon-heading">0% / 0%</p>
+                </div>
+                <!-- Metric 3: Liquidity -->
+                <div class="p-6 rounded-xl neon-border-card">
+                    <h3 class="text-xl font-bold mb-2 text-gray-400 font-cyber">Liquidity</h3>
+                    <p class="text-4xl font-black text-[var(--neon-blue)] neon-heading">LOCKED</p>
+                </div>
+                <!-- Metric 4: Chain -->
+                <div class="p-6 rounded-xl neon-border-card">
+                    <h3 class="text-xl font-bold mb-2 text-gray-400 font-cyber">Network</h3>
+                    <p class="text-5xl font-black text-[var(--neon-blue)] neon-heading">BASE L2</p>
+                </div>
+            </div>
+
+            <p class="mt-10 text-xl font-semibold text-gray-300">
+                **Engineered for frictionless trading on the Base L2 Network.**
+            </p>
+        </div>
+    </section>
+
+    <!-- 4. HOW TO BUY: Step-by-Step Guide - Cyber Styled -->
+    <section id="howtobuy" class="py-20 bg-[var(--deep-space)] border-b border-[var(--neon-blue)]/20 cyber-grid">
+        <div class="container mx-auto px-4 text-center relative z-20">
+            <h2 class="text-4xl md:text-5xl font-cyber neon-heading text-white mb-16 uppercase">
+                ACQUISITION PROTOCOL
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 max-w-6xl mx-auto">
+
+                <!-- Step 1: Initiate Wallet -->
+                <div class="p-6 neon-border-card relative pt-12">
+                    <span
+                        class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[var(--neon-blue)] text-black font-cyber text-3xl font-bold rounded-full h-12 w-12 flex items-center justify-center shadow-[0_0_15px_var(--neon-blue)]">1</span>
+                    <h3 class="text-2xl font-cyber text-[var(--accent-gold)] mb-3">Initiate Wallet</h3>
+                    <p class="text-gray-300">Set up a Base Chain compatible wallet like **MetaMask** or **Trust
+                        Wallet**. Ensure your security is maximized.</p>
+                </div>
+
+                <!-- Step 2: Acquire Base ETH -->
+                <div class="p-6 neon-border-card relative pt-12">
+                    <span
+                        class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[var(--neon-blue)] text-black font-cyber text-3xl font-bold rounded-full h-12 w-12 flex items-center justify-center shadow-[0_0_15px_var(--neon-blue)]">2</span>
+                    <h3 class="text-2xl font-cyber text-[var(--accent-gold)] mb-3">Acquire Base ETH</h3>
+                    <p class="text-gray-300">Purchase ETH and bridge it to the **Base L2 network**. This will be used
+                        for swapping and gas fees.</p>
+                </div>
+
+                <!-- Step 3: Execute Swap -->
+                <div class="p-6 neon-border-card relative pt-12">
+                    <span
+                        class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[var(--neon-blue)] text-black font-cyber text-3xl font-bold rounded-full h-12 w-12 flex items-center justify-center shadow-[0_0_15px_var(--neon-blue)]">3</span>
+                    <h3 class="text-2xl font-cyber text-[var(--accent-gold)] mb-3">Execute Swap</h3>
+                    <p class="text-gray-300">Navigate to the recommended DEX (e.g., Uniswap on Base). Paste the
+                        **contract address** and swap your ETH for $UPTOBER.</p>
+                </div>
+
+                <!-- Step 4: HODL and Connect -->
+                <div class="p-6 neon-border-card relative pt-12">
+                    <span
+                        class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[var(--neon-blue)] text-black font-cyber text-3xl font-bold rounded-full h-12 w-12 flex items-center justify-center shadow-[0_0_15px_var(--neon-blue)]">4</span>
+                    <h3 class="text-2xl font-cyber text-[var(--accent-gold)] mb-3">HODL and Connect</h3>
+                    <p class="text-gray-300">The transaction is complete. You are now part of the Cyber Horde! Share the
+                        word on socials.</p>
+                </div>
+
+            </div>
+
+            <a href="#"
+                class="neon-cta inline-flex items-center mt-16 py-3 px-8 rounded-lg font-extrabold text-lg shadow-lg transition duration-300">
+                <i class="fas fa-link mr-2"></i> GO TO UNISWAP (BASE)
+            </a>
+
+        </div>
+    </section>
+
+    <!-- 5. ART SHOWCASE (MEME GALLERY): Horizontal Scrolling Section -->
+    <section id="art" class="py-20 bg-[var(--deep-space)]/50 border-b border-[var(--neon-blue)]/20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-5xl font-cyber neon-heading text-white mb-12 uppercase">
+                CYBER BULL ASSET GALLERY
+            </h2>
+            <p class="text-lg text-gray-400 mb-8 max-w-3xl mx-auto">
+                The official, high-resolution visual assets. See the continuous display below.
+            </p>
+
+            <!-- Horizontal Scroll Container - Now a Marquee -->
+            <div class="horizontal-scroll max-w-10xl mx-auto">
+                <div class="marquee-content space-x-4">
+                    <!-- Set 1 (Original Content) - REDUCED min-w for tighter fit on all screen sizes -->
+                    <div
+                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="1.png" alt="Extra Art 2" class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+
+                    <div
+                        class="min-w-[2rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="2.png" alt="Extra Art 1" class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+                    <div
+                        class="min-w-[2rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="3.png" alt="Extra Art 1" class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+                    <div
+                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="4.png" alt="Extra Art 2" class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+
+                    <div
+                        class="min-w-[2rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="5.png" alt="Extra Art 1" class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+                    <div
+                        class="min-w-[2rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="6.png" alt="Extra Art 1" class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+                    <div
+                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="Gemini_Generated_Image_icvypicvypicvypi.png" alt="Staking Our Claim"
+                            class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+
+                    <div
+                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="Gemini_Generated_Image_ebjw4lebjw4lebjw.png" alt="POV: It's October"
+                            class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+
+                    <div
+                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="Gemini_Generated_Image_6h7juo6h7juo6h7j.png" alt="October is Our Season"
+                            class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+
+                    <div
+                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="Gemini_Generated_Image_wy4jcqwy4jcqwy4j.png" alt="Charging Bull"
+                            class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+
+                    <div
+                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="Gemini_Generated_Image_5n5wdf5n5wdf5n5w.png" alt="Diamond Hooves"
+                            class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+
+                    <!-- Set 2 (Duplicated Content for infinite loop) - REDUCED min-w for tighter fit on all screen sizes -->
+                    <div
+                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="1.png" alt="Extra Art 2" class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+
+                    <div
+                        class="min-w-[2rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="2.png" alt="Extra Art 1" class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+                    <div
+                        class="min-w-[2rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="3.png" alt="Extra Art 1" class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+                    <div
+                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="4.png" alt="Extra Art 2" class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+
+                    <div
+                        class="min-w-[2rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="5.png" alt="Extra Art 1" class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+                    <div
+                        class="min-w-[2rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="6.png" alt="Extra Art 1" class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+
+                    <div
+                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="Gemini_Generated_Image_icvypicvypicvypi.png" alt="Staking Our Claim"
+                            class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+
+                    <div
+                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="Gemini_Generated_Image_ebjw4lebjw4lebjw.png" alt="POV: It's October"
+                            class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+
+                    <div
+                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="Gemini_Generated_Image_6h7juo6h7juo6h7j.png" alt="October is Our Season"
+                            class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+
+                    <div
+                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="Gemini_Generated_Image_wy4jcqwy4jcqwy4j.png" alt="Charging Bull"
+                            class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+
+                    <div
+                        class="min-w-[1rem] sm:min-w-[8rem] rounded-lg overflow-hidden neon-border-card transform hover:scale-[1.05] transition duration-300 p-2">
+                        <img src="Gemini_Generated_Image_5n5wdf5n5wdf5n5w.png" alt="Diamond Hooves"
+                            class="w-full h-auto object-cover aspect-square rounded-md">
+                    </div>
+                </div>
+            </div>
+            <!-- End Horizontal Scroll Container -->
+        </div>
+    </section>
+
+    <!-- 6. SOCIALS: Dedicated section for community connection -->
+    <section id="socials" class="py-20 bg-[var(--deep-space)] border-b border-[var(--neon-blue)]/50 cyber-grid">
+        <div class="container mx-auto px-4 text-center relative z-20">
+            <h2 class="text-4xl md:text-5xl font-cyber neon-heading text-[var(--accent-gold)] mb-12 uppercase">
+                JOIN THE CYBER HORDE
+            </h2>
+            <p class="text-xl font-medium text-gray-300 mb-16 max-w-3xl mx-auto">
+                Connect with the community, get the latest deployment updates, and secure your place in the future of
+                the Base ecosystem.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-8 max-w-4xl mx-auto">
+
+                <!-- Telegram -->
+                <a href="#"
+                    class="w-full sm:w-64 neon-cta flex items-center justify-center space-x-3 p-5 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+                    <i class="fab fa-telegram-plane text-4xl"></i>
+                    <span class="text-2xl font-cyber">TELEGRAM</span>
+                </a>
+
+                <!-- Twitter / X -->
+                <a href="#"
+                    class="w-full sm:w-64 neon-cta flex items-center justify-center space-x-3 p-5 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+                    <i class="fab fa-twitter text-4xl"></i>
+                    <span class="text-2xl font-cyber">TWITTER / X</span>
+                </a>
+
+                <!-- Dextools Chart -->
+                <a href="#"
+                    class="w-full sm:w-64 neon-cta flex items-center justify-center space-x-3 p-5 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+                    <i class="fas fa-chart-line text-4xl"></i>
+                    <span class="text-2xl font-cyber">DEX CHART</span>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. ROADMAP: Clean Timeline - Dark mode friendly -->
+    <section id="roadmap" class="py-20 bg-[var(--deep-space)]/50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-cyber neon-heading text-white mb-16 uppercase text-center">
+                ROADMAP: DEPLOYMENT PROTOCOL
+            </h2>
+
+            <div class="relative max-w-5xl mx-auto">
+                <!-- Timeline Line with Neon Glow -->
+                <div
+                    class="hidden md:block absolute h-full w-1 bg-[var(--neon-blue)]/50 left-1/2 transform -translate-x-1/2 rounded-full shadow-[0_0_10px_var(--neon-blue)]">
+                </div>
+
+                <!-- Roadmap Items (Using the dark, neon-bordered card) -->
+
+                <!-- Item 1: Left -->
+                <div class="flex md:justify-start justify-center items-center w-full mb-10 md:mb-16">
+                    <div
+                        class="md:w-1/2 md:pr-10 md:text-right text-center p-6 rounded-xl neon-border-card text-gray-200">
+                        <h3 class="text-2xl font-cyber text-[var(--accent-gold)] mb-2">Phase I: Launch & Foundation</h3>
+                        <p class="text-gray-400">Fair launch on Base Chain. Comprehensive smart contract audit. Secure
+                            LP lock. Initial community build and high-quality anime art release.</p>
+                    </div>
+                    <div class="hidden md:block w-1/12 text-center">
+                        <div
+                            class="w-6 h-6 bg-[var(--neon-blue)] rounded-full mx-auto border-4 border-[var(--deep-space)] shadow-[0_0_15px_var(--neon-blue)]">
+                        </div>
+                    </div>
+                    <div class="hidden md:block w-1/2"></div>
+                </div>
+
+                <!-- Item 2: Right -->
+                <div class="flex md:justify-end justify-center items-center w-full mb-10 md:mb-16">
+                    <div class="hidden md:block w-1/2"></div>
+                    <div class="hidden md:block w-1/12 text-center">
+                        <div
+                            class="w-6 h-6 bg-[var(--neon-blue)] rounded-full mx-auto border-4 border-[var(--deep-space)] shadow-[0_0_15px_var(--neon-blue)]">
+                        </div>
+                    </div>
+                    <div
+                        class="md:w-1/2 md:pl-10 md:text-left text-center p-6 rounded-xl neon-border-card text-gray-200">
+                        <h3 class="text-2xl font-cyber text-[var(--accent-gold)] mb-2">Phase II: Expansion & Awareness
+                        </h3>
+                        <p class="text-gray-400">Listings on major trackers (CoinGecko/CMC). Aggressive marketing focus
+                            on crypto anime and Base communities. Tier 3 CEX exploration.</p>
+                    </div>
+                </div>
+
+                <!-- Item 3: Left -->
+                <div class="flex md:justify-start justify-center items-center w-full">
+                    <div
+                        class="md:w-1/2 md:pr-10 md:text-right text-center p-6 rounded-xl neon-border-card text-gray-200">
+                        <h3 class="text-2xl font-cyber text-[var(--accent-gold)] mb-2">Phase III: Ecosystem & Utility
+                        </h3>
+                        <p class="text-gray-400">Development of simple community utility (NFTs/Staking integration).
+                            Tier 2 CEX listings. Partnerships within the Base ecosystem to secure long-term value.</p>
+                    </div>
+                    <div class="hidden md:block w-1/12 text-center">
+                        <div
+                            class="w-6 h-6 bg-[var(--neon-blue)] rounded-full mx-auto border-4 border-[var(--deep-space)] shadow-[0_0_15px_var(--neon-blue)]">
+                        </div>
+                    </div>
+                    <div class="hidden md:block w-1/2"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer & Disclaimer (Updated to be darker and neon accented) -->
+    <footer
+        class="bg-black text-gray-500 py-10 border-t border-[var(--neon-blue)]/50 shadow-[0_0_10px_rgba(0,166,255,0.3)]">
+        <div
+            class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <!-- Social Links (kept for accessibility/convenience) -->
+            <div class="social-links space-x-6 text-2xl">
+                <a href="#" class="text-white hover:text-[var(--neon-blue)] transition duration-200" title="Telegram"><i
+                        class="fab fa-telegram-plane"></i></a>
+                <a href="#" class="text-white hover:text-[var(--neon-blue)] transition duration-200"
+                    title="Twitter/X"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white hover:text-[var(--neon-blue)] transition duration-200"
+                    title="DEX Chart"><i class="fas fa-chart-line"></i></a>
+                <a href="#" class="text-white hover:text-[var(--neon-blue)] transition duration-200" title="Dextools"><i
+                        class="fas fa-fire"></i></a>
+            </div>
+
+            <!-- Copyright and Domain -->
+            <div class="text-center md:text-left">
+                <p class="text-[var(--neon-blue)] font-cyber text-lg">UPTOBERONBASE.XYZ</p>
+                <p>&copy; <span id="current-year"></span> UPTOBER. All rights reserved.</p>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="max-w-md text-sm text-center md:text-right">
+                <p class="text-red-400 font-semibold mb-1">DISCLAIMER:</p>
+                <p>All investments carry risk. $UPTOBER is a decentralized meme token. Please ensure you conduct your
+                    own research (DYOR) before participating.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Functionality -->
+    <script>
+        // Set the current year in the footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        /**
+         * Copies the contract address to the clipboard and provides visual feedback.
+         * @param {HTMLButtonElement} button The button element that was clicked.
+         */
+        function copyContract(button) {
+            const contractElement = document.getElementById('contract-address');
+            const contractAddress = contractElement.textContent;
+
+            // UX Enhancement: Store original state
+            const originalText = button.innerHTML;
+
+            // Create a temporary textarea element
+            const tempInput = document.createElement('textarea');
+            tempInput.value = contractAddress;
+            document.body.appendChild(tempInput);
+
+            // Select the text
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); // For mobile devices
+
+            try {
+                // Execute the copy command
+                document.execCommand('copy');
+                showNotification('Contract Address Copied!', 'success');
+
+                // Visual Feedback on Button
+                button.innerHTML = '<i class="fas fa-check mr-1"></i> COPIED!';
+                button.disabled = true;
+
+                // Revert button text and state after 2 seconds
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                }, 2000);
+
+            } catch (err) {
+                console.error('Copy failed:', err);
+                showNotification('Copy failed. Please manually select the address.', 'error');
+            } finally {
+                document.body.removeChild(tempInput);
+            }
+        }
+
+        // Simple Notification (instead of alert)
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.className = 'fixed top-4 right-4 z-[9999] p-4 rounded-lg shadow-xl text-white font-bold transition-transform duration-300 transform translate-x-full';
+
+            // Neon themed notifications
+            if (type === 'success') {
+                notification.style.backgroundColor = 'var(--neon-blue)';
+                notification.style.color = 'var(--deep-space)';
+                notification.style.boxShadow = '0 0 15px var(--neon-blue)';
+            } else {
+                notification.classList.add('bg-red-600');
+            }
+
+            document.body.appendChild(notification);
+
+            // Show notification
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+                notification.classList.add('translate-x-0');
+            }, 50);
+
+            // Hide notification after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('translate-x-0');
+                notification.classList.add('translate-x-full');
+                setTimeout(() => notification.remove(), 300); // Remove element after transition
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>
